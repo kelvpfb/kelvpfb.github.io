@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  
+    <head>
+        <title>Understanding Comics</title>
+
+        <meta charset = "UTF-8">
+        <title>fixedWidth.html</title>
+        <link rel = "stylesheet"
+              type = "text/css"
+              href = "fixedWidth.css" />
+
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+        <style>
+            body
+            {
+                background-image: url(faces.png);
+            }
+            h1
+            {
+                font-size: 64px;
+                color: #800080;
+            }
+            h2
+            {
+                font-size: 32px;
+                color: #00008b;
+            }
+            p
+            {
+                font-size: 20px;
+                color: #00008b;
+            }
+            img
+            {
+                border: 7px solid #800080;
+                margin: 10px;
+            }
+            .comicNeue
+            {
+                font-family: 'Comic Neue', cursive;
+            }
+            #header 
+            {
+                border-bottom: 3px solid black;
+                text-align: center;
+                width: 1400px;
+                height: 145px;
+                padding-top: 1em;
+            }
+            #left 
+            {
+                float: left;
+                width: 700px;
+                clear: left;
+                border-right: 3px solid black;
+                height: 30em;
+                overflow: auto;
+                padding-right: .5em;
+            }
+            #right 
+            {
+                float: left;
+                width: 700px;
+                height: 30em;
+                overflow: auto;
+                padding-left: .5em;
+            }
+            #footer 
+            {
+                width: 1400px;
+                text-align: center;
+                border-top: 3px solid black;
+                clear: both;
+            }
+        </style>
+    </head> 
+
+    <body>
+        <center>
+        <div id = "header">
+            <h1 class="comicNeue">
+                Scott McCloud's <i>Understanding Comics</i>
+            </h1>
+        </div>
+        <div id = "left">
+            <h2 class="comicNeue">
+                Sequential Art
+            </h2>
+            <p class="comicNeue">
+                <img src="egypt.png" width=600px>
+                <br>
+                I found McCloud's dissection of comics, in an attempt to discern a definition, very interesting.
+                I'm taking a philosophy class right now that is about how we define things.
+                Many definitions are accurate, but are vague enough to encompass other distinct items.
+                Others only apply to the concept in question, but abstract the concept until it is meaningless.
+                You can break comics down into physical components, ink and paper, but then you lose the content and experience of reading them.
+                Defining anything philophically is difficult but an art medium even more so than others.
+            </p>
+        </div>
+        <div id = "right">
+            <h2 class="comicNeue">
+                Relation in Abstraction
+            </h2>
+            <p class="comicNeue">
+                <img src="mickey.png" height=300px; align="right">
+                One point McCloud proposes is that, by depicting figures with a cartoon art style, you make them more universal.
+                I cannot recognize myself in a highly detailed renaissance portrait, but I, and everyone else, recognize that I match this simplified figure.    
+                We are all able to identify outselves with a smiley face, while only one can match a photo.
+                This made me think of emojis, and their popularity.
+                Though miscommunications are definitely possible, they are often more efficient than text to convey emotiion because they match the face we make as we type.
+                These simplified cartoons have become a standard in digital communication to make up for how you can't see the speaker over text.
+            </p>
+        </div>
+    
+        <div id = "footer">
+            <h3 class="comicNeue">
+                <a href="http://scottmccloud.com/">Learn more about Scott McCloud.</a>
+            </h3>
+        </div>
+        </center>
+    </body>
+</html>
