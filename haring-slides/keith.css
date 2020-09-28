@@ -95,7 +95,7 @@ p {
   justify-content: center;
   align-items: center;
   scroll-behavior: smooth;
-  background-image: url('retrospect.jpg');
+  background-image: url('https://kelvpfb.github.io/haring-images/retrospect.jpg');
   /* art citation: https://www.haring.com/!/art-work/821 */
   color: red;
   text-transform: uppercase;
@@ -108,7 +108,7 @@ p {
   justify-content: center;
   align-items: center;
   scroll-behavior: smooth;
-  background-image: url('ignorancefear.jpg');
+  background-image: url('https://kelvpfb.github.io/haring-images/ignorancefear.jpg');
   /* art citation: https://www.haring.com/!/art-work/253 */
   background-size: cover;
   text-transform: uppercase;
