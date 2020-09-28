@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+/* used same stylesheet framework as partners */
 body,
 html 
 {
@@ -12,21 +13,18 @@ html
   box-sizing: border-box;
 }
 
-h1 {
+
+h1 
+{
   font-size: 1.25em;
   font-family: 'Permanent Marker', cursive;
   color: white;
   text-align: center;
+  text-decoration: none;
 }
 
-h2 {
-  font-size: 1em;
-  font-family: 'Lato', sans-serif;
-  color: white;
-  text-align: center;
-}
-
-p {
+p 
+{
   font-size: .5em;
   font-family: 'Lato', sans-serif;
   color: white;
@@ -34,7 +32,9 @@ p {
   text-decoration: none;
 }
 
-.flex-column {
+/* base structure for non-title slides */
+.flex-column 
+{
   display: flex; 
   flex-direction: column; 
   flex-wrap: nowrap; 
@@ -50,6 +50,7 @@ p {
   overflow: scroll;
 }
 
+/* base structure for buttons in footer */
 .flex-row
 {
   display: flex; 
@@ -74,6 +75,7 @@ p {
     width: 33%
 }
 
+/* specific CSS for the title page */
 .startPage 
 {
   min-height: 100vh;
@@ -88,6 +90,7 @@ p {
   text-transform: uppercase;
 }
 
+/* specific CSS for the first slide */
 .bioPage
 {
   min-height: 100vh;
@@ -101,6 +104,7 @@ p {
   text-transform: uppercase;
 }
 
+/* specific CSS for the second slide */
 .historyPage
 {
   min-height: 100vh;
@@ -114,6 +118,7 @@ p {
   text-transform: uppercase;
 }
 
+/* determine format and animation for the popup on the home page */
 .popup 
 {
   display: none;
@@ -123,33 +128,34 @@ p {
 .popup:target 
 {
   position: absolute;
-right: 0;
-top: 0;
-width: 100%;
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.popup .content {
-display: flex;
-align-items: center;
-justify-content: center;
-position: relative;
-width: 0;
-height: 0;
-color: white;
-background-color: black;
-animation: 1s grow ease forwards;
-text-align: center;
+.popup .content 
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 0;
+  height: 0;
+  color: white;
+  background-color: black;
+  animation: 1s grow ease forwards;
+  text-align: center;
 }
 
 .popup p 
 {
-    padding: 50px;
-    opacity: 0;
-    animation: 1s fadeIn ease forwards 1s;
+  padding: 50px;
+  opacity: 0;
+  animation: 1s fadeIn ease forwards 1s;
 }
 
 @keyframes grow 
@@ -161,19 +167,20 @@ text-align: center;
     }
 }
 
+/* create the collapsible sections on the first slide */
 input[type='checkbox'] 
 { 
   display: none; 
 } 
 
-.lbl-toggle 
+.a-toggle 
 { 
   display: flex; 
   cursor: pointer;  
   transition: all 0.25s ease-out; 
 }
 
-.lbl-toggle::before 
+.a-toggle::before 
 { 
   content: ' '; 
   display: flex; 
@@ -182,7 +189,7 @@ input[type='checkbox']
   transition: transform .2s ease-out; 
 } 
 
-.toggle:checked+.lbl-toggle::before 
+.toggle:checked+.a-toggle::before 
 { 
   transform: rotate(90deg) translateX(-3px); 
 } 
@@ -194,7 +201,7 @@ input[type='checkbox']
   transition: max-height .25s ease-in-out; 
 } 
 
-.toggle:checked + .lbl-toggle + .collapsible-content 
+.toggle:checked + .a-toggle + .collapsible-content 
 { 
   max-height: 200px; 
 } 
@@ -208,61 +215,3 @@ input[type='checkbox']
 { 
   margin-bottom: 0; 
 }
-
-/* elements from the stylesheet template i didnt end up using
-
-.heading {
-  padding: 2%;
-  color: #d9f2d9;
-  font-size: 70px;
-  letter-spacing: 10px;
-  line-height: 60px;
-  text-align: center;
-}
-
-.intro-text {
-  background-color: #d9f2d9; 
-  padding: 4%;
-  margin: 3%;
-  color: #e6b3ff; 
-  font-size: 30px; 
-  letter-spacing: 2px; 
-  line-height: 1.4em; 
-  text-align: center;
-}
-
-.text-section {
-  background-color: #e6b3ff;
-  padding: 20px 45px;
-  margin: 35px;
-  text-align: center;
-  font-size: 25px;
-  border-radius: 50px;
-}
-
-
-.main,
-.image-one {
-  position: relative;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #d9f2d9;
-  background-size: cover;
-  min-height: 100%; 
-  background-attachment: fixed;
-}
-
-.main {
-  background-image: ;
-}
-
-
-.image-one {
-  background-image: ;
-}
-*/
-
-
-
-
-
