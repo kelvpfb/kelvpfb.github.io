@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+
+body, html
+{
+    background-image: url(pinksky.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+header
+{
+    font-family: 'MedievalSharp', cursive;
+    font-size: 48px;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "k p" "f b";
+    row-gap: 25%;
+    column-gap: 25%;
+    margin: 15%;
+    margin-top: 10%
+}
+
+.k
+{
+    grid-area: k;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.p
+{
+    grid-area: p;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.f
+{
+    grid-area: f;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.b
+{
+    grid-area: b;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.letter-grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10% 2fr 3fr 10%;
+}
+
+.name
+{
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 48px;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.playlist
+{
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.backstory
+{
+    grid-column: 2;
+    grid-row: 2;
+    font-family: 'Caudex', serif;
+    font-size: 24px;
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.photo
+{
+    grid-column: 2;
+    grid-row: 3;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.buttons
+{
+    grid-column: 1 / span 2;
+    grid-row: 4;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
