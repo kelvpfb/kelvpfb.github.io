@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+body, html
+{
+    background-image: repeating-linear-gradient(palegreen, green, palegreen);
+    background-size: cover;
+    text-align: center;
+}
+
+header
+{
+    font-family: 'Nunito', sans-serif;
+    font-size: 48px;
+}
+
+p
+{
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
