@@ -362,3 +362,31 @@ a:hover
     flex-direction: row;
     justify-content: space-between;
 }
+
+.script
+{
+    overflow: scroll;
+    background-color: #fbfb98;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    padding: 2%;
+    flex-wrap: wrap;
+    max-height: 500px;
+    max-width: 40%;
+    text-align: left;
+}
+
+.arrow-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.center
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
