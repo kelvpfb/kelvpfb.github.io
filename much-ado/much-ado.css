@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
 
 body, html
 {
     background-color: #cafb98;
 }
+
+/*
+navigation buttons for all pages
+*/
 
 .header
 {
@@ -39,6 +44,26 @@ body, html
     cursor: pointer;
 }
 
+a:link
+{
+    text-decoration: none;
+}
+
+a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover
+{
+    color: #fb98ca;
+    border-color: #fb98ca;
+}
+
+/*
+grid display for start page
+*/
 .grid-home
 {
     display: grid;
@@ -107,93 +132,9 @@ body, html
     text-align: center;
 }
 
-a:link
-{
-    text-decoration: none;
-}
-
-a:visited
-{
-    text-decoration: none;
-    color: black;
-}
-
-a:hover
-{
-    color: #fb98ca;
-    border-color: #fb98ca;
-}
-
-.row 
-{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
-    justify-content: center;
-    margin-bottom: 5%;
-}
-  
-.column 
-{
-    flex: 25%;
-    max-width: 20%;
-    padding: 0 4px;
-}
-  
-.column img 
-{
-    margin-top: 8px;
-    vertical-align: middle;
-    width: 100%;
-}
-  
-@media screen and (max-width: 800px) 
-{
-    .column 
-    {
-        flex: 100%;
-        max-width: 100%;
-    }
-}
- 
-.headshot
-{
-    display: block;
-    width: 100%;
-    height: auto;
-    position: relative;
-}
-
-.bio 
-{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(202, 251, 152, .5);
-    overflow: hidden;
-    width: 100%;
-    height: 0;
-    transition: .5s ease;
-}
-  
-.headshot:hover .bio 
-{
-    height: 100%;
-}
-  
-.text 
-{
-    color: black;
-    font-size: 20px;
-    font-family: 'Krona One', sans-serif;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
+/*
+horizontal timeline to navigate between pages with media query that makes it vertical for small windows
+*/
 .timeline ol 
 {
   padding: 200px 0 50px 0;
@@ -204,14 +145,14 @@ a:hover
 {
     position: relative;
     display: inline-block;
-    width: 180px;
+    width: 14vw;
     height: 3px;
     background: #fb98ca;
 }
 
 .timeline ol li:last-child 
 {
-    width: 450px;
+    width: 30vw;
 }
 
 .timeline ol li:not(:first-child) 
@@ -363,6 +304,9 @@ a:hover
     justify-content: space-between;
 }
 
+/*
+dividers within editing page
+*/
 .script
 {
     overflow: scroll;
@@ -389,4 +333,182 @@ a:hover
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+}
+
+/*
+flex display for casting page, with media query for small window
+*/
+.row 
+{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+  
+.column 
+{
+    flex: 25%;
+    max-width: 20%;
+    padding: 0 4px;
+}
+  
+.column img 
+{
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+}
+  
+@media screen and (max-width: 800px) 
+{
+    .column 
+    {
+        flex: 100%;
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+/*
+hover mechanic for displaying cast names and roles
+*/
+.headshot
+{
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.bio 
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(202, 251, 152, .5);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+}
+  
+.headshot:hover .bio 
+{
+    height: 100%;
+}
+  
+.text 
+{
+    color: black;
+    font-size: 20px;
+    font-family: 'Krona One', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/*
+flex displays for staging page
+*/
+.staging
+{
+    display: flex;
+    flex-direction: column;
+    margin: 12px;
+    width: 100%;
+}
+
+.staging img 
+{
+    width: 40%;
+    height: 40%;
+}
+
+.compare
+{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row; 
+    font-family: 'Krona One', sans-serif;
+    font-size: 48px;
+    margin: 12px;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+/*
+flex display for outreach page
+*/
+.outreach
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+flex display for performing page with slideshow mechanics
+*/
+.performing
+{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    font-family: 'Exo', sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideshow
+{
+    width: 600px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.slides 
+{
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.slideshow img 
+{
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slides > div 
+{
+    flex-shrink: 0;
+    width: 600px;
+    height: 400px;
+    margin-right: 50px;
+    position: relative;
+}
+
+.slideshow > a 
+{
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fbfb98;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 0 0.5rem 0;
+    position: relative;
 }
