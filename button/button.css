@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&display=swap');
+
+body
+{
+    background-color: plum;
+    display: flex;
+    justify-content: center;
+}
+
+h1
+{
+    font-size: 24px;
+    color: purple;
+    font-family: 'Montserrat Subrayada', sans-serif;
+}
+
+button
+{
+    min-width: 256px;
+    min-height: 128px;
+    border-radius: 20%;
+    border: 10px solid goldenrod;
+    background-color: gold;
+    text-align: center;
+    line-height: 128px;
+}
+
+button:hover 
+{
+    background-color: plum;
+    border: 10px solid gold;
+}
