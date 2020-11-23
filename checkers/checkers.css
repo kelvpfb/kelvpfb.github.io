@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
+
+body, html
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #DCDCDC;
+}
+
+h1
+{
+    font-size: 64px;
+    font-family: 'Goldman', cursive;
+    text-align: center;
+    margin: 3%;
+}
+
+h2
+{
+    font-size: 32px;
+    font-family: 'Goldman', cursive;
+    text-align: center;
+    margin: 3%;
+}
+
+.panel
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.jail
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 128px;
+    min-width: 128px;
+    height: 96px;
+    min-height: 96px;
+}
+
+.jailTile
+{
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    min-height: 32px;
+}
+
+.board
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	margin: 0;
+    width: 528px;
+    min-width: 528px;
+    height: 528px;
+    min-height: 528px;
+    border: 3px solid #000000;
+}
+
+.board .tileGrey
+{
+	background-color: #A9A9A9;
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+    margin: 1px;
+}
+
+.board .tileWhite
+{
+	background-color: #FFFFFF;
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+    margin: 1px;
+}
+
+.pieceBlack
+{
+	width: 75%;
+    height: 75%;
+    margin: 12.5%;
+    border-radius: 50%;
+    background-color: #000000;
+}
+
+.pieceRed
+{
+	width: 75%;
+	height: 75%;
+    margin: 12.5%;
+    border-radius: 50%;
+    background-color: #FF0000;
+}
+
+.king.pieceRed
+{
+    background-color: orange;
+}
+
+.king.pieceBlack
+{
+    background-color: purple;
+}
+
+.redTurn
+{
+    opacity: 100%;
+}
+
+.blackTurn
+{
+    opacity: 0%;
+}
+
+a:link
+{
+    text-decoration: none;
+}
+
+a:visited
+{
+    text-decoration: none;
+    color: #000000;
+}
+
+a:hover
+{
+    text-decoration: none;
+    color: #A9A9A9;
+}
