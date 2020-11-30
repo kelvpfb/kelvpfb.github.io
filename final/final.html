@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title> To Do </title>
+    <link   rel="stylesheet" 
+            type="text/css"
+            href="final.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta   name="viewport"
+            content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+    <h1>To Do</h1>
+    <p>
+        Click button or press 'return' to add item to list. <br>
+        Click item to mark as complete. <br>
+        Click 'X' to remove item from list. <br>
+    </p>          
+    <div class="row">
+        <input id="task" type="text" placeholder="New item...">
+        <input id="doBy" type="test" placeholder="mm/dd/yyyy">
+        <button id="enter" onClick="changeText('enter', 'Added!', 'Add');">Add</button>
+    </div>
+    <ul></ul>
+
+    <script src="final.js"> </script>
+</body>
