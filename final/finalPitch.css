@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap');
+
+/*
+font-family: 'Bebas Neue', cursive;
+font-family: 'Poppins', sans-serif;
+*/
+
+body 
+{
+	background: #dfe49b;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 2.5%;
+}
+
+h1 
+{
+    font-family: 'Bebas Neue', cursive;
+    color: #264e2c;
+    font-size: 64px;
+    margin-bottom: 0;
+}
+
+p 
+{
+    font-family: 'Poppins', sans-serif;
+    color: #55761a;
+    font-size: 24px;
+}
+
+.row
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+input
+{
+    border-radius: 5px;
+    color: #264e2c;
+    background-color: #f6f7cd;
+    font-family: 'Poppins', sans-serif;
+    padding: 5px;
+    border: none;
+}
+
+#task
+{
+    min-width: 60%;
+}
+
+#doBy
+{
+    min-width: 10%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#enter 
+{
+    min-width: 5%;
+	border-radius: 5px;
+	color: #f6f7cd;
+	background-color: #264e2c;
+    transition: all 0.75s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+#enter:hover
+{
+	background-color: #55761a;
+}
+
+ul 
+{
+    text-align: left;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+li 
+{
+	list-style: none;
+	padding: 10px 20px;
+    color: #55761a;
+    font-family: 'Poppins', sans-serif;
+	border: 2px solid #025f70;
+	border-radius: 5px;
+	margin-bottom: 10px;
+    background: #f6f7cd;
+    transition: all 0.5s ease;
+    min-width: 80%;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+li:hover 
+{
+	background: #dfe49b;
+}
+
+li > button 
+{
+	background: none;
+	border: none;
+    float: right;
+    color: #025f70;
+    font-size: 16px;
+}
+
+.done 
+{
+	background: #9db33e;
+	color: #264e2c;
+}
+
+.delete 
+{
+	display: none;
+}
