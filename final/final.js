@@ -284,26 +284,31 @@ function restoreList()
     console.log(string);
     if (string.length > 0)
     {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(array[i]))
-        ul.appendChild(li);
-        
-        function markDone() 
+        var array = string.split('|');
+        for (var i = 0; i < array.length; i + 2)
         {
-		    li.classList.toggle("done");
-	    }
-	    li.addEventListener("click",markDone)
-        if (array[i + 1] == "complete")
-        {
-            li.classList.toggle("done");
-        }
-        var dBtn = document.createElement("button");
-	    dBtn.appendChild(document.createTextNode("X"));
-	    li.appendChild(dBtn);
-	    dBtn.addEventListener("click", deleteListItem);
-        function deleteListItem()
-        {
-		    li.classList.add("delete")
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(array[i]))
+            ul.appendChild(li);
+
+            function markDone() 
+            {
+		        li.classList.toggle("done");
+            }
+            li.addEventListener("click",markDone)
+            if (array[i + 1] == "complete")
+            {
+                li.classList.toggle("done");
+            }
+
+            var dBtn = document.createElement("button");
+	        dBtn.appendChild(document.createTextNode("X"));
+	        li.appendChild(dBtn);
+	        dBtn.addEventListener("click", deleteListItem);
+            function deleteListItem()
+            {
+		        li.classList.add("delete")
+            }
         }
     }
 }
