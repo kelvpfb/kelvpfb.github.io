@@ -42,55 +42,154 @@ function dateFormat()
 }
 
 // creates list item with input values
-function createListElement() {
+function createListElement() 
+{
 	var li = document.createElement("li");
 	li.appendChild(document.createTextNode(date.value + "   " + input.value));
 	ul.appendChild(li);
     input.value = ""; // resets input fields
     date.value = "";
 
-
-
-
-    
-
-	//START STRIKETHROUGH
-	// because it's in the function, it only adds it for new items
-	function crossOut() {
+    // creates button to mark list items as done/not node
+    function markDone() 
+    {
 		li.classList.toggle("done");
 	}
 
-	li.addEventListener("click",crossOut);
-	//END STRIKETHROUGH
+	li.addEventListener("click",markDone)
 
-
-	// START ADD DELETE BUTTON
+	// adds 'X' to each list item that will delete them if clicked
 	var dBtn = document.createElement("button");
 	dBtn.appendChild(document.createTextNode("X"));
 	li.appendChild(dBtn);
 	dBtn.addEventListener("click", deleteListItem);
-	// END ADD DELETE BUTTON
-
-
-	//ADD CLASS DELETE (DISPLAY: NONE)
-	function deleteListItem(){
+    function deleteListItem()
+    {
 		li.classList.add("delete")
 	}
-    //END ADD CLASS DELETE
 }
 
+function sortList()
+{
+    var list = document.getElementById("list");
+    var switching = true;
+    var shouldSwitch, a, i;
+    while (switching)
+    {
+        switching = false;
+        a = list.getElementsByTagName("li");
+        for (i = 0; i < (a.length - 1); i++)
+        {
+            shouldSwitch = checkForSwitch (a[i], a[i + 1]);
+            console.log(i);
+            if (shouldSwitch)
+            {
+                a[i].parentNode.insertBefore(a[i + 1], a[i]);
+                switching = true;
+                break;
+            }  
+        }
+    }
+}
 
+function checkForSwitch(a, b)
+{
+    var aString = a.innerHTML;
+    var aParts = aString.split("   ");
+    var aDateString = aParts[0];
+    var aDate = aDateString.split("/");
+    var aMonth = parseInt(aDate[0], 10);
+    var aDay = parseInt(aDate[1], 10);
+    var aYear = parseInt(aDate[2], 10);
 
+    var bString = b.innerHTML;
+    var bParts = bString.split("   ");
+    var bDateString = bParts[0];
+    var bDate = bDateString.split("/");
+    var bMonth = parseInt(bDate[0], 10);
+    var bDay = parseInt(bDate[1], 10);
+    var bYear = parseInt(bDate[2], 10);
 
+    if (bYear < aYear)
+    {
+        return true;
+    }
+    else if ((bYear == aYear) && (bMonth < aMonth))
+    {
+        return true;
+    }
+    else if ((bYear == aYear) && (bMonth == aMonth) && (bDay < aDay))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
+function showAll()
+{
+    var i;
+    list = document.getElementById("list");
+    li = list.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++)
+    {
+        li[i].style.display = "";
+    }
+    document.getElementById("all").style.backgroundColor = "#55761a";
+    document.getElementById("incomplete").style.backgroundColor = "#264e2c";
+    document.getElementById("complete").style.backgroundColor = "#264e2c";
+}
 
+function showIncomplete()
+{
+    var i;
+    list = document.getElementById("list");
+    li = list.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++)
+    {
+        if ($(li[i]).hasClass("done"))
+        {
+            li[i].style.display = "none";
+        }
+        else
+        {
+            li[i].style.display = "";
+        }
+    }
+    document.getElementById("all").style.backgroundColor = "#264e2c";
+    document.getElementById("incomplete").style.backgroundColor = "#55761a";
+    document.getElementById("complete").style.backgroundColor = "#264e2c";
+}
+
+function showComplete()
+{
+    var i;
+    list = document.getElementById("list");
+    li = list.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++)
+    {
+        if ($(li[i]).hasClass("done"))
+        {
+            li[i].style.display = "";
+        }
+        else
+        {
+            li[i].style.display = "none";
+        }
+    }
+    document.getElementById("all").style.backgroundColor = "#264e2c";
+    document.getElementById("incomplete").style.backgroundColor = "#264e2c";
+    document.getElementById("complete").style.backgroundColor = "#55761a";
+}
 
 // changes button text for 2 seconds after it is used to add an item
 function changeText(button, newText, originalText)
 {
     buttonId = document.getElementById(button);
-      buttonId.textContent = newText;
-      setTimeout(function() {document.getElementById(button).textContent = originalText; }, 2000);
+    buttonId.textContent = newText;
+    setTimeout(function() {document.getElementById(button).textContent = originalText; }, 2000);
 }
 
 // after "Add" button is pressed, checks validity of input and adds it to list if valid
@@ -101,6 +200,10 @@ function addListAfterClick(){
     else if (!dateFormat())
     {
         alert("Date must be entered as mm/dd/yyyy");
+    }
+    else if (inputLength() == 0)
+    {
+        alert("Task field has been left blank")
     }
 }
 
@@ -121,3 +224,86 @@ function addListAfterKeypress(event)
 enterButton.addEventListener("click",addListAfterClick);
 input.addEventListener("keypress", addListAfterKeypress);
 date.addEventListener("keypress", addListAfterKeypress)
+
+function saveData()
+{
+    list = document.getElementById("list");
+    li = list.getElementsByTagName("li");
+    var i;
+    var array = [];
+    for (i = 0; i < li.length; i++)
+    {
+        if ($(li[i]).hasClass("done"))
+        {
+            var text = li[i].innerHTML;
+            var splitText = text.split("<");
+            var justText = splitText[0];
+            var string = justText + "|complete";
+            array.push(string);
+        }
+        else
+        {
+            var text = li[i].innerHTML;
+            var splitText = text.split("<");
+            var justText = splitText[0];
+            var string = justText + "|incomplete";
+            array.push(string);
+        }
+    }
+    var cookieString = array.join('|');
+    console.log(cookieString);
+    setCookie("list", cookieString, 30);
+}
+
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+}
+
+function restoreList()
+{
+    var string = getCookie("list");
+    console.log(string);
+    if (string.length > 0)
+    {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(array[i]))
+        ul.appendChild(li);
+        
+        function markDone() 
+        {
+		    li.classList.toggle("done");
+	    }
+	    li.addEventListener("click",markDone)
+        if (array[i + 1] == "complete")
+        {
+            li.classList.toggle("done");
+        }
+        var dBtn = document.createElement("button");
+	    dBtn.appendChild(document.createTextNode("X"));
+	    li.appendChild(dBtn);
+	    dBtn.addEventListener("click", deleteListItem);
+        function deleteListItem()
+        {
+		    li.classList.add("delete")
+        }
+    }
+}
