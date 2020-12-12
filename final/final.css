@@ -77,6 +77,7 @@ input
 .filter
 {
     min-width: 18.5%;
+	max-width: 18.5%;
 	border-radius: 5px;
 	color: #f6f7cd;
 	background-color: #264e2c;
