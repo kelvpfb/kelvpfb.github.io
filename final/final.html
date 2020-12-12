@@ -6,11 +6,12 @@
             type="text/css"
             href="final.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <meta   name="viewport"
             content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
-<body>
+<body onload="restoreList()">
     <h1>To Do</h1>
     <p>
         Click button or press 'return' to add item to list. <br>
@@ -18,11 +19,18 @@
         Click 'X' to remove item from list. <br>
     </p>          
     <div class="row">
-        <input id="task" type="text" placeholder="New item...">
         <input id="doBy" type="test" placeholder="mm/dd/yyyy">
+        <input id="task" type="text" placeholder="New item...">
         <button id="enter" onClick="changeText('enter', 'Added!', 'Add');">Add</button>
     </div>
-    <ul></ul>
+    <div class="row">
+        <button class="filter" id="sort" onclick="sortList()">Sort</button>
+        <button class="filter" id="all" onclick="showAll()">Show All</button>
+        <button class="filter" id="incomplete" onclick="showIncomplete()">Show Incomplete Only</button>
+        <button class="filter" id="complete" onclick="showComplete()">Show Complete Only</button>
+    </div>
+    <ul id="list"></ul>
+    <button class="filter" onclick="saveData()">Save</button>
 
     <script src="final.js"> </script>
 </body>
