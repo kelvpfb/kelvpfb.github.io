@@ -43,12 +43,14 @@ function dateFormat()
 
 // after "Add" button is pressed, checks validity of input and adds it to list if valid
 function addListAfterClick(){
-	if (inputLength() > 0 && dateFormat()) { //makes sure that an empty input field doesn't create a li
+    if (inputLength() > 0 && dateFormat()) //makes sure that an empty input field doesn't create a li
+    { 
         var string = date.value + "   " + input.value; 
         input.value = ""; // resets input fields
         date.value = "";   
-    createListElement(string, false);
+        createListElement(string, false);
     }
+    // error prompts
     else if (!dateFormat())
     {
         alert("Date must be entered as mm/dd/yyyy");
@@ -62,9 +64,12 @@ function addListAfterClick(){
 // changes button text for 2 seconds after it is used to add an item
 function changeText(button, newText, originalText)
 {
-    buttonId = document.getElementById(button);
-    buttonId.textContent = newText;
-    setTimeout(function() {document.getElementById(button).textContent = originalText; }, 2000);
+    if (inputLength() > 0 && dateFormat()) 
+    {
+        buttonId = document.getElementById(button);
+        buttonId.textContent = newText;
+        setTimeout(function() {document.getElementById(button).textContent = originalText; }, 2000);
+    }
 }
 
 // after return key is pressed, checks validity of input and adds it to list if valid
@@ -74,7 +79,7 @@ function addListAfterKeypress(event)
     {
         var string = date.value + "   " + input.value
         createListElement(string, false);
-        input.value = ""; // resets input fields
+        input.value = "";
         date.value = "";
     } 
     else if (inputLength() > 0 && event.which === 13 && !dateFormat())
@@ -89,11 +94,15 @@ input.addEventListener("keypress", addListAfterKeypress);
 date.addEventListener("keypress", addListAfterKeypress)
 
 // creates list item with input values
+// "complete" term allows function to be called both after user input and when the page is being built from cookies
+// default is for item to be incomplete, but it can be created as complete if that's how it was saved
 function createListElement(string, complete) 
 {
+    // default places new item at end of list
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(string));
     ul.appendChild(li);
+
     // creates button to mark list items as done/not done
     function markDone() 
     {
@@ -106,16 +115,17 @@ function createListElement(string, complete)
 	li.addEventListener("click",markDone);
     
     // adds 'X' to each list item that will delete them if clicked
-    var dBtn = document.createElement("button");
-    dBtn.appendChild(document.createTextNode("X"));
-	li.appendChild(dBtn);
-	dBtn.addEventListener("click", deleteListItem);
+    var del = document.createElement("button");
+    del.appendChild(document.createTextNode("X"));
+	li.appendChild(del);
+	del.addEventListener("click", deleteListItem);
     function deleteListItem()
     {   
-        dBtn.parentElement.remove();
+        del.parentElement.remove();
     }
 }
 
+// traverses list and sorts items, with the earliest date first
 function sortList()
 {
     var list = document.getElementById("list");
@@ -139,6 +149,10 @@ function sortList()
     }
 }
 
+// parses string in the list item, dismissing the task description at the end and
+// splitting the date into its three components, so it can be compared
+// if the second date it found to be earlier than the first, the function returns true
+// so that the sort List function will proceed to switch them
 function checkForSwitch(a, b)
 {
     var aString = a.innerHTML;
@@ -175,6 +189,8 @@ function checkForSwitch(a, b)
     }
 }
 
+// sets all list items as visible
+// changes color of button to indicate which filter is currently active
 function showAll()
 {
     var i;
@@ -189,6 +205,8 @@ function showAll()
     document.getElementById("complete").style.backgroundColor = "#264e2c";
 }
 
+// sets only the list items not marked as done as visible
+// changes color of button to indicate which filter is currently active
 function showIncomplete()
 {
     var i;
@@ -210,6 +228,8 @@ function showIncomplete()
     document.getElementById("complete").style.backgroundColor = "#264e2c";
 }
 
+// sets only the list items marked as done as visible
+// changes color of button to indicate which filter is currently active
 function showComplete()
 {
     var i;
@@ -231,6 +251,7 @@ function showComplete()
     document.getElementById("complete").style.backgroundColor = "#55761a";
 }
 
+// combines list items and their statuses into one string that can be stored as a cookie
 function saveData()
 {
     list = document.getElementById("list");
@@ -260,6 +281,7 @@ function saveData()
     setCookie("list", cookieString, 30);
 }
 
+// setCookie and getCookie sourced from https://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname,cvalue,exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -283,9 +305,13 @@ function setCookie(cname,cvalue,exdays) {
     return "";
 }
 
+// automatically called whenever the site is loaded
+// accesses most recent update of the "list cookie"
 function restoreList()
 {
     var string = getCookie("list");
+    // parses string into its components, creating list items out of the odd-numbered ones
+    // and setting their statuses as based on the even-numbered ones
     if (string != "")
     {
         var array = string.split("|");
