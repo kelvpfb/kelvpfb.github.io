@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&display=swap');
 
-/*
-font-family: 'Bebas Neue', cursive;
-font-family: 'Poppins', sans-serif;
-*/
-
+/* general document formatting */
 body 
 {
 	background: #dfe49b;
@@ -12,6 +8,8 @@ body
     display: flex;
     flex-direction: column;
     margin: 2.5%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 h1 
@@ -33,9 +31,10 @@ p
 {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: center;  
 }
 
+/* layout for button and input fields in top row */
 input
 {
     border-radius: 5px;
@@ -48,7 +47,7 @@ input
 
 #task
 {
-    min-width: 60%;
+    min-width: 70%;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -74,10 +73,10 @@ input
     background-color: #55761a;
 }
 
+/* layout/visuals for buttons in second row and "save" */
 .filter
 {
-    min-width: 18.5%;
-    max-width: 18.5%;
+    min-width: 20%;
 	border-radius: 5px;
 	color: #f6f7cd;
 	background-color: #264e2c;
@@ -92,11 +91,15 @@ input
     background-color: #55761a;
 }
 
+/* layout/visuals for list items */
 ul 
 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
     text-align: left;
     margin-top: 2%;
-    margin-left: 10%;
+    margin-right: 5%;
 }
 
 li 
@@ -110,8 +113,7 @@ li
 	margin-bottom: 10px;
     background: #f6f7cd;
     transition: all 0.5s ease;
-    min-width: 80%;
-    max-width: 80%;
+    min-width: 100%;
     word-wrap: break-word;
 }
 
@@ -129,8 +131,44 @@ li > button
     font-size: 16px;
 }
 
+/* toggled on and off by clicking the items */
 .done 
 {
 	background: #9db33e;
 	color: #264e2c;
+}
+
+/* media query adjusting layout of buttons, inputs, and outputs */
+@media screen and (max-width: 800px) 
+{
+    .filter
+    {
+        min-width: 35%;
+    }
+
+    .row
+    {
+        flex-wrap: wrap;
+    }
+
+    #doBy
+    {
+        min-width: 70%;
+    }
+
+    #enter
+    {
+        min-width: 70%;
+    }
+
+    #task
+    {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    ul
+    {
+        max-width: 70%;
+    }
 }
