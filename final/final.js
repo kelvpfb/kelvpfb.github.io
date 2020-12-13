@@ -41,32 +41,79 @@ function dateFormat()
     }
 }
 
-// creates list item with input values
-function createListElement() 
-{
-	var li = document.createElement("li");
-	li.appendChild(document.createTextNode(date.value + "   " + input.value));
-	ul.appendChild(li);
-    input.value = ""; // resets input fields
-    date.value = "";
+// after "Add" button is pressed, checks validity of input and adds it to list if valid
+function addListAfterClick(){
+	if (inputLength() > 0 && dateFormat()) { //makes sure that an empty input field doesn't create a li
+        var string = date.value + "   " + input.value; 
+        input.value = ""; // resets input fields
+        date.value = "";   
+    createListElement(string, false);
+    }
+    else if (!dateFormat())
+    {
+        alert("Date must be entered as mm/dd/yyyy");
+    }
+    else if (inputLength() == 0)
+    {
+        alert("Task field has been left blank")
+    }
+}
 
-    // creates button to mark list items as done/not node
+// changes button text for 2 seconds after it is used to add an item
+function changeText(button, newText, originalText)
+{
+    buttonId = document.getElementById(button);
+    buttonId.textContent = newText;
+    setTimeout(function() {document.getElementById(button).textContent = originalText; }, 2000);
+}
+
+// after return key is pressed, checks validity of input and adds it to list if valid
+function addListAfterKeypress(event) 
+{
+    if (inputLength() > 0 && event.which === 13 && dateFormat()) 
+    {
+        var string = date.value + "   " + input.value
+        createListElement(string, false);
+        input.value = ""; // resets input fields
+        date.value = "";
+    } 
+    else if (inputLength() > 0 && event.which === 13 && !dateFormat())
+    {
+        alert("Date must be entered as mm/dd/yyyy");
+    }
+}
+
+// adds event listeners to both input boxes and the button
+enterButton.addEventListener("click",addListAfterClick);
+input.addEventListener("keypress", addListAfterKeypress);
+date.addEventListener("keypress", addListAfterKeypress)
+
+// creates list item with input values
+function createListElement(string, complete) 
+{
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(string));
+    ul.appendChild(li);
+    // creates button to mark list items as done/not done
     function markDone() 
     {
-		li.classList.toggle("done");
-	}
-
-	li.addEventListener("click",markDone)
-
-	// adds 'X' to each list item that will delete them if clicked
-	var dBtn = document.createElement("button");
-	dBtn.appendChild(document.createTextNode("X"));
+	    li.classList.toggle("done");
+    }
+    if (complete)
+    {
+        markDone();
+    }
+	li.addEventListener("click",markDone);
+    
+    // adds 'X' to each list item that will delete them if clicked
+    var dBtn = document.createElement("button");
+    dBtn.appendChild(document.createTextNode("X"));
 	li.appendChild(dBtn);
 	dBtn.addEventListener("click", deleteListItem);
     function deleteListItem()
-    {
-		li.classList.add("delete")
-	}
+    {   
+        dBtn.parentElement.remove();
+    }
 }
 
 function sortList()
@@ -184,47 +231,6 @@ function showComplete()
     document.getElementById("complete").style.backgroundColor = "#55761a";
 }
 
-// changes button text for 2 seconds after it is used to add an item
-function changeText(button, newText, originalText)
-{
-    buttonId = document.getElementById(button);
-    buttonId.textContent = newText;
-    setTimeout(function() {document.getElementById(button).textContent = originalText; }, 2000);
-}
-
-// after "Add" button is pressed, checks validity of input and adds it to list if valid
-function addListAfterClick(){
-	if (inputLength() > 0 && dateFormat()) { //makes sure that an empty input field doesn't create a li
-        createListElement();
-    }
-    else if (!dateFormat())
-    {
-        alert("Date must be entered as mm/dd/yyyy");
-    }
-    else if (inputLength() == 0)
-    {
-        alert("Task field has been left blank")
-    }
-}
-
-// after return key is pressed, checks validity of input and adds it to list if valid
-function addListAfterKeypress(event) 
-{
-    if (inputLength() > 0 && event.which === 13 && dateFormat()) 
-    {
-		createListElement();
-    } 
-    else if (inputLength() > 0 && event.which === 13 && !dateFormat())
-    {
-        alert("Date must be entered as mm/dd/yyyy");
-    }
-}
-
-// adds event listeners to both input boxes and the button
-enterButton.addEventListener("click",addListAfterClick);
-input.addEventListener("keypress", addListAfterKeypress);
-date.addEventListener("keypress", addListAfterKeypress)
-
 function saveData()
 {
     list = document.getElementById("list");
@@ -251,7 +257,6 @@ function saveData()
         }
     }
     var cookieString = array.join('|');
-    console.log(cookieString);
     setCookie("list", cookieString, 30);
 }
 
@@ -281,34 +286,21 @@ function setCookie(cname,cvalue,exdays) {
 function restoreList()
 {
     var string = getCookie("list");
-    console.log(string);
-    if (string.length > 0)
+    if (string != "")
     {
-        var array = string.split('|');
-        for (var i = 0; i < array.length; i + 2)
+        var array = string.split("|");
+        var i = 0;
+        while (i < array.length)
         {
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(array[i]))
-            ul.appendChild(li);
-
-            function markDone() 
-            {
-		        li.classList.toggle("done");
-            }
-            li.addEventListener("click",markDone)
             if (array[i + 1] == "complete")
             {
-                li.classList.toggle("done");
+                createListElement(array[i], true);
             }
-
-            var dBtn = document.createElement("button");
-	        dBtn.appendChild(document.createTextNode("X"));
-	        li.appendChild(dBtn);
-	        dBtn.addEventListener("click", deleteListItem);
-            function deleteListItem()
+            else
             {
-		        li.classList.add("delete")
+                createListElement(array[i], false);
             }
+            i = i + 2;
         }
     }
 }
